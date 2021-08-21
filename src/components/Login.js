@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../actions";
+import MainNavbar from "./MainNavbar";
 
 const Login = ({ login }) => {
   const history = useHistory();
@@ -25,6 +26,7 @@ const Login = ({ login }) => {
 
   return (
     <div>
+      <MainNavbar />
       <h1 className="signH">Login</h1>
       <form onSubmit={(e) => onSubmit(e)} className="container my-3">
         <div className="form-group">
@@ -49,7 +51,7 @@ const Login = ({ login }) => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Login
         </button>
       </form>
     </div>

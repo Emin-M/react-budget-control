@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import api from "../api/api.js";
+import MainNavbar from "./MainNavbar";
 
 const SignUp = () => {
   const history = useHistory();
@@ -26,6 +27,7 @@ const SignUp = () => {
 
   return (
     <div>
+      <MainNavbar />
       <h1 className="signH">Sign Up</h1>
       <form onSubmit={(e) => onSubmit(e)} className="container my-3">
         <div className="form-group">
@@ -72,7 +74,7 @@ const SignUp = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          SignUp
         </button>
       </form>
     </div>

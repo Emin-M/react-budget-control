@@ -14,12 +14,20 @@ const Category = ({
   updateCategory,
 }) => {
   const [modal, setModal] = useState(false);
+  const [modalD, setModalD] = useState(false);
   const [id, setId] = useState();
   const [udata, setUdata] = useState({
     name: "",
     type: "",
     color: "",
   });
+
+  if (modal || modalD) {
+    window.addEventListener("click", () => {
+      setModal(false);
+      setModalD(false);
+    });
+  }
 
   useEffect(() => {
     getCategories();
@@ -60,7 +68,15 @@ const Category = ({
             className="fas fa-pen-square mr-2"
           ></i>
           <i
-            onClick={() => deleteCategory(category.id)}
+            onClick={() => {
+              setModalD(true);
+              setId(category.id);
+              setUdata({
+                name: category.name,
+                type: category.type,
+                color: category.color,
+              });
+            }}
             className="fas fa-trash ml-2"
           ></i>
         </td>
@@ -71,12 +87,13 @@ const Category = ({
   return (
     <div>
       <Navbar />
+      <h1 className="categori-header">Categories</h1>
       <div className="btn-container">
         <Link className="btn btn-primary" to="/newcategory">
           New category
         </Link>
       </div>
-      <table className="table container">
+      <table onClick={(e) => e.stopPropagation()} className="table container">
         <thead>
           <tr>
             <th scope="col"> Name </th>
@@ -90,6 +107,7 @@ const Category = ({
         className="modal-header"
         show={modal}
         onHide={() => setModal(false)}
+        onClick={(e) => e.stopPropagation()}
         backdrop="static"
         keyboard={false}
         size="lg"
@@ -113,7 +131,7 @@ const Category = ({
               />
             </div>
             <div className="form-group">
-              <label htmlFor="type">Example select</label>
+              <label htmlFor="type">Type</label>
               <select
                 onChange={(e) => inputHandle(e)}
                 defaultValue={udata.type}
@@ -125,10 +143,11 @@ const Category = ({
               </select>
             </div>
             <div className="form-group">
+              <label htmlFor="color">Color</label>
               <input
                 onChange={(e) => inputHandle(e)}
                 defaultValue={udata.color}
-                placeholder="green"
+                placeholder="black/#99aa00"
                 className="form-control"
                 type="text"
                 id="color"
@@ -147,6 +166,46 @@ const Category = ({
           </Button>
           <Button rel="noreferrer" variant="primary" onClick={() => onSubmit()}>
             Change
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        className="modal-header"
+        show={modalD}
+        onHide={() => setModalD(false)}
+        onClick={(e) => e.stopPropagation()}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Delete: <b>{udata.name}</b>
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          Are You Sure You Want To Delete: <b>{udata.name}?</b>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button
+            rel="noreferrer"
+            variant="danger"
+            onClick={() => setModalD(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            rel="noreferrer"
+            variant="primary"
+            onClick={() => {
+              deleteCategory(id);
+              setModalD(false);
+            }}
+          >
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>
