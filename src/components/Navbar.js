@@ -1,11 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
   const history = useHistory();
+  const name = localStorage.getItem("userName");
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userName");
     history.push("/login");
   };
 
@@ -42,8 +45,21 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      <div className="userName">
+        <i className="fas fa-user-tie"></i>
+        <span className="navbar-brand">
+          {user.username ? user.username : name}
+          {user.username || name ? "" : <Link to="/login">Login</Link>}
+        </span>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);

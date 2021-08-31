@@ -40,7 +40,8 @@ const Category = ({
     setUdata(newData);
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     updateCategory(id, udata);
     setModal(false);
   };
@@ -103,6 +104,7 @@ const Category = ({
         </thead>
         <tbody>{renderCategories}</tbody>
       </table>
+
       <Modal
         className="modal-header"
         show={modal}
@@ -147,9 +149,8 @@ const Category = ({
               <input
                 onChange={(e) => inputHandle(e)}
                 defaultValue={udata.color}
-                placeholder="black/#99aa00"
                 className="form-control"
-                type="text"
+                type="color"
                 id="color"
               />
             </div>
@@ -164,11 +165,16 @@ const Category = ({
           >
             Cancel
           </Button>
-          <Button rel="noreferrer" variant="primary" onClick={() => onSubmit()}>
+          <Button
+            rel="noreferrer"
+            variant="primary"
+            onClick={(e) => onSubmit(e)}
+          >
             Change
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Modal
         className="modal-header"
         show={modalD}

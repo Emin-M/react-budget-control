@@ -4,6 +4,7 @@ export const login = (values) => async (dispatch) => {
   const response = await api().post("/users/login", values);
   dispatch({ type: "LOGIN", payload: response.data });
   localStorage.setItem("token", response.data.token);
+  localStorage.setItem("userName", response.data.username);
 };
 
 export const getCategories = () => async (dispatch) => {

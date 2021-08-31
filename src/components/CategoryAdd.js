@@ -56,9 +56,8 @@ const CategoryAdd = ({ addCategory }) => {
           <label htmlFor="color">Color</label>
           <input
             onChange={(e) => inputHandle(e)}
-            placeholder="black/#99aa00"
             className="form-control"
-            type="text"
+            type="color"
             id="color"
           />
         </div>
