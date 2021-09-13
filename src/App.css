@@ -80,3 +80,7 @@ h2 {
 .navbar li:hover {
     background-color: rgb(248, 127, 127) !important;
 }
+
+.navbar li:active {
+    background-color: rgb(236, 10, 10) !important;
+}

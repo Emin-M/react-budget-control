@@ -85,12 +85,21 @@ const Category = ({
     );
   });
 
+  const name = localStorage.getItem("userName");
+  let classname;
+
+  if (!name) {
+    classname = "btn btn-primary disabled";
+  } else {
+    classname = "btn btn-primary";
+  }
+
   return (
     <div>
       <Navbar />
       <h1 className="categori-header">Categories</h1>
       <div className="btn-container">
-        <Link className="btn btn-primary" to="/newcategory">
+        <Link className={classname} to="/newcategory">
           New category
         </Link>
       </div>
