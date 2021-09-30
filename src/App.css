@@ -36,6 +36,18 @@
     margin: 1em 10%;
 }
 
+thead tr th:not(:first-child)::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 19px;
+    border-left: 1px solid #000;
+    color: #333333;
+    overflow: hidden;
+    transform: translateY(20%);
+    opacity: .3;
+}
+
 tbody i {
     font-size: 1.3em;
     color: rgb(5, 0, 0);
@@ -50,7 +62,7 @@ tbody i:hover {
 
 tbody span {
     padding: .2em;
-    border-radius: 5px;
+    border-radius: 3px;
     color: #ffffff;
 }
 

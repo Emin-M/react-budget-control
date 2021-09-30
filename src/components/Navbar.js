@@ -35,7 +35,7 @@ const Navbar = ({ user }) => {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/category">
-              Category
+              Categories
             </Link>
           </li>
           <li className="nav-item">
@@ -47,10 +47,7 @@ const Navbar = ({ user }) => {
       </div>
       <div className="userName">
         <i className="fas fa-user-tie"></i>
-        <span className="navbar-brand">
-          {user.username ? user.username : name}
-          {user.username || name ? "" : <Link to="/login">Login</Link>}
-        </span>
+        <span className="navbar-brand">{name && name}</span>
       </div>
     </nav>
   );

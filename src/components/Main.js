@@ -6,9 +6,7 @@ const Main = () => {
   const history = useHistory();
   const token = localStorage.getItem("token");
   useEffect(() => {
-    if (token) {
-      history.push("/records");
-    }
+    token && history.push("/records");
   }, []);
   return <MainNavbar />;
 };

@@ -26,3 +26,23 @@ export const deleteCategory = (id) => async (dispatch) => {
   await api().delete(`/categories/${id}`);
   dispatch({ type: "DELETE_CATEGORY", payload: id });
 };
+
+export const getRecords = () => async (dispatch) => {
+  const response = await api().get("/records");
+  dispatch({ type: "GET_RECORDS", payload: response.data });
+};
+
+export const addRecord = (formValues) => async (dispatch) => {
+  const response = await api().post("/records", formValues);
+  dispatch({ type: "ADD_RECORD", payload: response.data });
+};
+
+export const updateRecord = (id, formValues) => async (dispatch) => {
+  const response = await api().put(`/records/${id}`, formValues);
+  dispatch({ type: "UPDATE_RECORD", payload: response.data });
+};
+
+export const deleteRecord = (id) => async (dispatch) => {
+  await api().delete(`/records/${id}`);
+  dispatch({ type: "DELETE_RECORD", payload: id });
+};

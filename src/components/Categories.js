@@ -7,7 +7,7 @@ import { getCategories, deleteCategory, updateCategory } from "../actions";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-const Category = ({
+const Categories = ({
   getCategories,
   categories,
   deleteCategory,
@@ -16,6 +16,7 @@ const Category = ({
   const [modal, setModal] = useState(false);
   const [modalD, setModalD] = useState(false);
   const [id, setId] = useState();
+  const [header, setHeader] = useState();
   const [udata, setUdata] = useState({
     name: "",
     type: "",
@@ -36,7 +37,6 @@ const Category = ({
   const inputHandle = (e) => {
     const newData = { ...udata };
     newData[e.target.id] = e.target.value;
-    console.log(newData);
     setUdata(newData);
   };
 
@@ -65,6 +65,7 @@ const Category = ({
                 type: category.type,
                 color: category.color,
               });
+              setHeader(category.name);
             }}
             className="fas fa-pen-square mr-2"
           ></i>
@@ -77,6 +78,7 @@ const Category = ({
                 type: category.type,
                 color: category.color,
               });
+              setHeader(category.name);
             }}
             className="fas fa-trash ml-2"
           ></i>
@@ -85,21 +87,12 @@ const Category = ({
     );
   });
 
-  const name = localStorage.getItem("userName");
-  let classname;
-
-  if (!name) {
-    classname = "btn btn-primary disabled";
-  } else {
-    classname = "btn btn-primary";
-  }
-
   return (
     <div>
       <Navbar />
       <h1 className="categori-header">Categories</h1>
       <div className="btn-container">
-        <Link className={classname} to="/newcategory">
+        <Link className="btn btn-primary" to="/newcategory">
           New category
         </Link>
       </div>
@@ -125,7 +118,7 @@ const Category = ({
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update: {udata.name}</Modal.Title>
+          <Modal.Title>Update: {header}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -196,7 +189,7 @@ const Category = ({
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            Delete: <b>{udata.name}</b>
+            Delete: <b>{header}</b>
           </Modal.Title>
         </Modal.Header>
 
@@ -238,4 +231,4 @@ export default connect(mapStatToProps, {
   getCategories,
   deleteCategory,
   updateCategory,
-})(Category);
+})(Categories);

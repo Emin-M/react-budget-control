@@ -21,7 +21,12 @@ const Login = ({ login }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     login(data);
-    history.push("/records");
+    setTimeout(() => {
+      history.push("/records");
+    }, 1000);
+    setTimeout(() => {
+      history.push("/records");
+    }, 2000);
   };
 
   return (

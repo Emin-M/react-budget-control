@@ -15,7 +15,6 @@ const CategoryAdd = ({ addCategory }) => {
   const inputHandle = (e) => {
     const newData = { ...data };
     newData[e.target.id] = e.target.value;
-    console.log(newData);
     setData(newData);
   };
 

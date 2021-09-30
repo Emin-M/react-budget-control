@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import { categoryReducer } from "./categoryReducer";
 import { loginReducer } from "./loginReducer";
+import { categoryReducer } from "./categoryReducer";
+import { recordReducer } from "./recordReducer";
 
 export default combineReducers({
-  categories: categoryReducer,
   user: loginReducer,
+  categories: categoryReducer,
+  records: recordReducer,
 });
