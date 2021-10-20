@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Navbar from "./Navbar";
 import {
@@ -52,6 +53,14 @@ const Records = ({
     e.preventDefault();
     updateRecord(id, udata);
     setModal(false);
+    toast.success("Record updated successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   const renderRecords = records.data.map((record) => {
@@ -111,6 +120,18 @@ const Records = ({
       </tr>
     );
   });
+
+  const deletingRecord = (id) => {
+    deleteRecord(id);
+    toast.success("Record deleted successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   return (
     <>
@@ -240,7 +261,7 @@ const Records = ({
             rel="noreferrer"
             variant="primary"
             onClick={() => {
-              deleteRecord(id);
+              deletingRecord(id);
               setModalD(false);
             }}
           >

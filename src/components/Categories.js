@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
+import { toast } from "react-toastify";
 import { getCategories, deleteCategory, updateCategory } from "../actions";
 
 import Modal from "react-bootstrap/Modal";
@@ -44,6 +45,14 @@ const Categories = ({
     e.preventDefault();
     updateCategory(id, udata);
     setModal(false);
+    toast.success("Category updated successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   const renderCategories = categories.data.map((category) => {
@@ -86,6 +95,18 @@ const Categories = ({
       </tr>
     );
   });
+
+  const deletingCategory = (id) => {
+    deleteCategory(id);
+    toast.success("Category deleted successfully!", {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   return (
     <div>
@@ -209,7 +230,7 @@ const Categories = ({
             rel="noreferrer"
             variant="primary"
             onClick={() => {
-              deleteCategory(id);
+              deletingCategory(id);
               setModalD(false);
             }}
           >
