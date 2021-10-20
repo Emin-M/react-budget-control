@@ -40,7 +40,7 @@ const Records = ({
   useEffect(() => {
     getRecords();
     getCategories();
-  }, []);
+  }, [getRecords, getCategories]);
 
   const inputHandle = (e) => {
     const newData = { ...udata };
@@ -132,7 +132,7 @@ const Records = ({
               <th scope="col"> Action </th>
             </tr>
           </thead>
-          <tbody>{renderRecords}</tbody>
+          <tbody key={Math.random()}>{renderRecords}</tbody>
         </table>
       </div>
 

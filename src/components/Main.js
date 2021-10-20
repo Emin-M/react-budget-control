@@ -7,7 +7,7 @@ const Main = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     token && history.push("/records");
-  }, []);
+  }, [token, history]);
   return <MainNavbar />;
 };
 

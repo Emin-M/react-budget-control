@@ -32,7 +32,7 @@ const Categories = ({
 
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [getCategories]);
 
   const inputHandle = (e) => {
     const newData = { ...udata };

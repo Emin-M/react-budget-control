@@ -1,8 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import Main from "./components/Main";
 import SignUp from "./components/SignUp";
@@ -16,6 +18,7 @@ import RecordAdd from "./components/RecordAdd";
 const App = () => {
   return (
     <div className="App">
+      <ToastContainer />
       <Switch>
         <Route path="/" exact component={Main} />
         <Route path="/register" exact component={SignUp} />

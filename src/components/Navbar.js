@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
   const history = useHistory();
   const name = localStorage.getItem("userName");
+  const { pathname } = useLocation();
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -27,19 +28,25 @@ const Navbar = ({ user }) => {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
+        <ul className="navbar-nav">
+          <li
+            className={pathname === "/records" ? "nav-item active" : "nav-item"}
+          >
             <Link className="nav-link" to="/records">
               Records
             </Link>
           </li>
-          <li className="nav-item">
+          <li
+            className={
+              pathname === "/category" ? "nav-item active" : "nav-item"
+            }
+          >
             <Link className="nav-link" to="/category">
               Categories
             </Link>
           </li>
           <li className="nav-item">
-            <button onClick={() => logout()} className="nav-link btn">
+            <button onClick={() => logout()} className="nav-link btn logout">
               Logout
             </button>
           </li>
@@ -47,16 +54,10 @@ const Navbar = ({ user }) => {
       </div>
       <div className="userName">
         <i className="fas fa-user-tie"></i>
-        <span className="navbar-brand">{name && name}</span>
+        <span className="navbar-brand">{name}</span>
       </div>
     </nav>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Navbar);
+export default connect()(Navbar);
